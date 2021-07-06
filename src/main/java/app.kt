@@ -27,6 +27,7 @@ class LineSetOperationsView : View("Line Set Operations") {
     val group = ToggleGroup()
     var differenceToggle: ToggleButton by singleAssign()
     var unionToggle: ToggleButton by singleAssign()
+    var intersectionToggle: ToggleButton by singleAssign()
 
 
     override val root = gridpane {
@@ -62,6 +63,7 @@ class LineSetOperationsView : View("Line Set Operations") {
                 hbox {
                     differenceToggle = togglebutton("Difference", group)
                     unionToggle = togglebutton("Union", group)
+                    intersectionToggle = togglebutton("Intersection", group)
                 }
             }
         }
@@ -80,6 +82,9 @@ class LineSetOperationsView : View("Line Set Operations") {
                 }
                 unionToggle -> {
                     area3.text = lines1.union(lines2).joinToString("\n")
+                }
+                intersectionToggle -> {
+                    area3.text = lines1.filter { lines2.contains(it) }.joinToString("\n")
                 }
             }
         }
